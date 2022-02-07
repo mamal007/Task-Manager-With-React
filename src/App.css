@@ -1,0 +1,16 @@
+body {
+    font-family: "IranYekan", sans-serif;
+    background-color: #bcd4de;
+}
+
+
+button {
+    font-family: "IranYekan", sans-serif;
+    background-color: #496b72;
+    color: white;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.8rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
