@@ -3,7 +3,7 @@ import AddTask from "./components/addTask/addTask.component";
 import Tasks from "./components/tasks/tasks.component";
 
 import { toast, ToastContainer } from "react-toastify";
-import "../public/styles/ReactToastify.css";
+import "./ReactToastify.css";
 import "./App.css";
 
 class App extends Component {
