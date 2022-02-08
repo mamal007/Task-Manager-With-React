@@ -1,31 +1,28 @@
-import React from "react";
+import React, {useContext} from "react";
 import SimpleContext from "../../Context/SimpleContext";
 
 const AddTask = () => {
-  return (
-    <SimpleContext.Consumer>
-      {({ changeInput , state, addTask }) => (
+    const {changeInput, task, addTask} = useContext(SimpleContext);
+    return (
         <form
-          onSubmit={(event) => event.preventDefault()}
-          className="input-group mb-3 justify-content-center"
+            onSubmit={(event) => event.preventDefault()}
+            className="input-group mb-3 justify-content-center"
         >
-          <input
-            type="text"
-            onChange={changeInput}
-            value={state.task}
-            style={{ height: "100%" }}
-          />
-          <button
-            type="submit"
-            onClick={addTask}
-            style={{ borderRadius: "2px" }}
-          >
-            افزودن به لیست
-          </button>
+            <input
+                type="text"
+                onChange={changeInput}
+                value={task}
+                style={{height: "100%"}}
+            />
+            <button
+                type="submit"
+                onClick={addTask}
+                style={{borderRadius: "2px"}}
+            >
+                افزودن به لیست
+            </button>
         </form>
-      )}
-    </SimpleContext.Consumer>
-  );
+    );
 };
 
 export default AddTask;
