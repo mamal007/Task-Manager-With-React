@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './task.style.css'
+import './Task.style.css'
 
 const Task = ({name , removeTask}) => {
     return (

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import AddTask from "./components/addTask/addTask.component";
-import Tasks from "./components/tasks/tasks.component";
+import AddTask from "./components/AddTask/AddTask.component";
+import Tasks from "./components/Tasks/Tasks.component";
+import SimpleContext from "./Context/SimpleContext";
 
 import { toast, ToastContainer } from "react-toastify";
 import "./ReactToastify.css";
@@ -66,46 +67,50 @@ class App extends Component {
     }
 
     if (showTasks && tasks.length > 0) {
-      ShowTasks = <Tasks tasks={tasks} removeTask={this.removeTask} />;
+      ShowTasks = <Tasks />;
     }
 
     return (
-      <div className="rtl text-center">
-        <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-        <h4 className="mb-5 mt-2">
-          {" "}
-          تعداد تسک های شما
-          <span className={`mx-1 badge rounded-pill ${badgeColor}`}>
-            {tasks.length}
-          </span>
-          تا است.
-        </h4>
-        <AddTask
-          addTask={this.addTask}
-          task={task}
-          changeInput={this.changeInput}
-          buttonStyle={this.buttonStyle}
-        />
+      <SimpleContext.Provider
+        value={{
+          state: this.state,
+          addTask: this.addTask,
+          removeTask: this.removeTask,
+          changeInput: this.changeInput,
+        }}
+      >
+        <div className="rtl text-center">
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+          <h4 className="mb-5 mt-2">
+            {" "}
+            تعداد تسک های شما
+            <span className={`mx-1 badge rounded-pill ${badgeColor}`}>
+              {tasks.length}
+            </span>
+            تا است.
+          </h4>
+          <AddTask />
 
-        <button
-          onClick={() => this.setState({ showTasks: !this.state.showTasks })}
-          style={{ marginTop: "20px" }}
-          className={`btn ${showButtonColor}`}
-        >
-          نمایش تسک ها
-        </button>
-        {ShowTasks}
-      </div>
+          <button
+            onClick={() => this.setState({ showTasks: !this.state.showTasks })}
+            style={{ marginTop: "20px" }}
+            className={`btn ${showButtonColor}`}
+          >
+            نمایش تسک ها
+          </button>
+          {ShowTasks}
+        </div>
+      </SimpleContext.Provider>
     );
   }
 }

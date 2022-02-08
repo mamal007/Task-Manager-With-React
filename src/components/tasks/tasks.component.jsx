@@ -1,19 +1,23 @@
 import React from "react";
+import SimpleContext from "../../Context/SimpleContext"
+import Task from "../Task/Task.component";
+import "./Tasks.style.css";
 
-import Task from "../task/task.component";
-import "./tasks.style.css";
-
-const Tasks = ({ tasks, removeTask }) => {
+const Tasks = () => {
   return (
-    <div className="tasksList">
-      {tasks.map((task) => (
-        <Task
-          key={task.id}
-          name={task.name}
-          removeTask={() => removeTask(task.id)}
-        />
-      ))}
-    </div>
+    <SimpleContext.Consumer>
+      {({ state, removeTask }) => (
+        <div className="tasksList">
+          {state.tasks.map((task) => (
+            <Task
+              key={task.id}
+              name={task.name}
+              removeTask={() => removeTask(task.id)}
+            />
+          ))}
+        </div>
+      )}
+    </SimpleContext.Consumer>
   );
 };
 
