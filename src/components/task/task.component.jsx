@@ -1,5 +1,6 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
 import './Task.style.css'
 
 const Task = ({name , removeTask}) => {
@@ -9,6 +10,11 @@ const Task = ({name , removeTask}) => {
         <button onClick={removeTask} > حذف تسک </button>
       </div>
     );
+}
+
+Task.propTypes = {
+  name: PropTypes.string,
+  removeTask: PropTypes.func,
 }
 
 export default Task;

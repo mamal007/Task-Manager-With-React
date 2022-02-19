@@ -68,7 +68,6 @@ const App = () => {
     ShowTasks = <Tasks />;
   }
 
-  console.log(getShowTasks)
   return (
     <SimpleContext.Provider
       value={{
