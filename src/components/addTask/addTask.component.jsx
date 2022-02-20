@@ -1,14 +1,19 @@
-import React, {useContext} from "react";
+import React, {useContext , useRef , useEffect} from "react";
 import SimpleContext from "../../Context/SimpleContext";
 
 const AddTask = () => {
     const {changeInput, task, addTask} = useContext(SimpleContext);
+    const inputFocus = useRef(null);
+    useEffect(() => {
+        inputFocus.current.focus();
+    })
     return (
         <form
             onSubmit={(event) => event.preventDefault()}
             className="input-group mb-3 justify-content-center"
         >
             <input
+            ref={inputFocus}
                 type="text"
                 onChange={changeInput}
                 value={task}

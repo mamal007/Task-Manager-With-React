@@ -1,0 +1,32 @@
+h2 {
+  text-align: center;
+  font-size: 30px;
+}
+
+img {
+  width: 90%;
+  border-radius: 100px;
+  margin: 30px auto;
+  display: block;
+}
+
+figure img {
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+figure:hover img {
+	-webkit-filter: grayscale(0);
+	filter: grayscale(0);
+}
+
+.about {
+    width: 30%;
+    margin: 50px auto;
+    padding: 50px;
+    background-color: rgb(30, 86, 133);
+    border-radius: 60px;
+    color: white;
+    box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2), -1px -1px 2px rgba(255, 255, 255, 0.2);
+}

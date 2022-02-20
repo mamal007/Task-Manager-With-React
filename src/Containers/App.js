@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import AddTask from "./Components/AddTask/AddTask.component";
-import Tasks from "./Components/Tasks/Tasks.component";
-import SimpleContext from "./Context/SimpleContext";
+import AddTask from "../Components/AddTask/AddTask.component";
+import Tasks from "../Components/Tasks/Tasks.component";
+import Nav from "../Common/Nav"
+import SimpleContext from "../Context/SimpleContext";
+import {Route, Routes} from "react-router-dom"
 
 import { toast, ToastContainer } from "react-toastify";
-import "./ReactToastify.css";
-import "./App.css";
+import "../ReactToastify.css";
+import "../App.css";
+import About from "../Common/About/About.component";
 
 const App = () => {
   const [getTasks, setTasks] = useState({ tasks: [] });
@@ -78,36 +81,48 @@ const App = () => {
         changeInput: changeInput,
       }}
     >
-      <div className="rtl text-center">
-        <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-        <h4 className="mb-5 mt-2">
-          تعداد تسک های شما
-          <span className={`mx-1 badge rounded-pill ${badgeColor}`}>
-            {getTasks.tasks.length}
-          </span>
-          تا است.
-        </h4>
-        <AddTask />
+      <Nav />
+      <Routes>
+        <Route
+          path="/"
+          exact
+          element={
+            <div className="rtl text-center">
+              <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+              />
+              <h4 className="mb-5 mt-2">
+                تعداد تسک های شما
+                <span className={`mx-1 badge rounded-pill ${badgeColor}`}>
+                  {getTasks.tasks.length}
+                </span>
+                تا است.
+              </h4>
+              <AddTask />
 
-        <button
-          onClick={() => setShowTasks({ showTasks: !getShowTasks.showTasks })}
-          style={{ marginTop: "20px" }}
-          className={`btn ${showButtonColor}`}
-        >
-          نمایش تسک ها
-        </button>
-        {ShowTasks}
-      </div>
+              <button
+                onClick={() =>
+                  setShowTasks({ showTasks: !getShowTasks.showTasks })
+                }
+                style={{ marginTop: "20px" }}
+                className={`btn ${showButtonColor}`}
+              >
+                نمایش تسک ها
+              </button>
+              {ShowTasks}
+            </div>
+          }
+        />
+        <Route path="/about" element={<About />} />
+      </Routes>
     </SimpleContext.Provider>
   );
 };
